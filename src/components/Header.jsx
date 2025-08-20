@@ -1,19 +1,25 @@
-import Logo from "../assets/logo/Coffee Shop.png"
-
+import { Link } from "react-router-dom";
+import Logo from "../assets/logo/Coffee Shop.png";
+import Product from "./Product";
+import Conformation from "./Conformation";
 
 
 function Header() {
   return (
-    <div className="flex justify-between p-5 m-auto bg-amber-950">
-      <div>
-      <img src={Logo} alt="logo" className="w-[280px] h-[50px] pl-5"/>
-      </div>
+    <div className="flex justify-between p-5 m-auto bg-[#351C0F]">
+      <Link to='/'>
+        <img src={Logo} alt="logo" className="w-[280px] h-[50px] pl-5" />
+      </Link>
       <div className="text-white flex gap-8 pr-5">
         <div>
-            <h1 className="text-xl font-thin cursor-pointer">Products</h1>
+          <Link className="text-xl font-thin cursor-pointer hover:text-amber-100" to="/product">
+            <Product />
+          </Link>
         </div>
         <div>
-            <h1 className="text-xl font-thin cursor-pointer">Checkout</h1>
+          <Link className="text-xl font-thin cursor-pointer hover:text-amber-100" to="/conformation">
+            <Conformation />
+          </Link>
         </div>
       </div>
     </div>

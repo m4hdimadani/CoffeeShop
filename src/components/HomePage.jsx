@@ -1,7 +1,10 @@
+import Banner from "./Banner"
 
 function HomePage() {
   return (
-    <div>HomePage</div>
+    <div>
+      <Banner />
+    </div>
   )
 }
 
