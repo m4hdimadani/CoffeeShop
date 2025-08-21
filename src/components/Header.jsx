@@ -13,12 +13,12 @@ function Header() {
       <div className="text-white flex gap-8 pr-5">
         <div>
           <Link className="text-xl font-thin cursor-pointer hover:text-amber-100" to="/product">
-            <Product />
+           Product
           </Link>
         </div>
         <div>
           <Link className="text-xl font-thin cursor-pointer hover:text-amber-100" to="/conformation">
-            <Conformation />
+            Checkout
           </Link>
         </div>
       </div>

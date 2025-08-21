@@ -20,7 +20,9 @@ function Footer() {
             <button className="cursor-pointer">our Pastry</button>
           </div>
         </div>
-        <div></div>
+        <div className="pt-20 text-white">
+          <p>@2025 By <a href="https://github.com/m4hdimadani">Mahdi Madani</a></p>
+        </div>
       </div>
     </div>
   )
