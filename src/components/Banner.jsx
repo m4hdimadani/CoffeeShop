@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import banner from "../assets/imge/pexels-jonathan-borba-2878713 1.png";
-import Product from "./Product";
+import { IoIosArrowForward } from "react-icons/io";
 
 function Banner() {
   return (
@@ -23,11 +23,10 @@ function Banner() {
         </p>
       </div>
       <div className="absolute right-1/10 bottom-1/10 cursor-pointer">
-        <button className="bg-white  w-[320px] h-[50px] border-amber-950 border-2 rounded-3xl hover:bg-[#351C0F] hover:text-white cursor-pointer">
-          <Link to='/product' className="text-xl">
-          shop all products >
+        <button className="bg-white relative w-[320px] h-[50px] border-amber-950 border-2 rounded-3xl hover:bg-[#351C0F] hover:text-white cursor-pointer transition-colors duration-300 ease-in-out">
+          <Link to="/product" className="text-xl flex items-center  justify-center gap-2">
+            shop all products <IoIosArrowForward />
           </Link>
-           
         </button>
       </div>
     </div>
