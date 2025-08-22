@@ -3,7 +3,7 @@ import logo from "../assets/logo/Coffee Shop.png"
 
 function Footer() {
   return (
-    <div className="w-[100%] h-[383px] bg-[#351C0F] p-10">
+    <div className="w-[100%] h-[383px] bg-[#351C0F] p-10 ">
       <div>
         <div className="flex items-center gap-10">
             <img src={logo} alt="logo" />

@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo/Coffee Shop.png";
-import Product from "./Product";
-import Conformation from "./Conformation";
 
 
 function Header() {
   return (
-    <div className="flex justify-between p-5 m-auto bg-[#351C0F]">
+    <div className="flex justify-between p-5 m-auto bg-[#351C0F] ">
       <Link to='/'>
         <img src={Logo} alt="logo" className="w-[280px] h-[50px] pl-5" />
       </Link>

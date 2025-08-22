@@ -28,7 +28,7 @@ function Product() {
   };
 
   return (
-    <div className="w-[1184px] m-auto">
+    <div className="w-[1184px] m-auto ">
       <AnimatePresence>
         {message && (
           <motion.div
