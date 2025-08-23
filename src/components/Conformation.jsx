@@ -12,6 +12,12 @@ function Conformation() {
 
   const total = cartItems.reduce((acc, item) => acc + item.price, 0);
 
+  const deleteHandler = (product) => {
+    const deleteProduct = cartItems.filter((i) => i.id !== product.id);
+    setCartItems(deleteProduct);
+    localStorage.setItem("cartItems", JSON.stringify(deleteProduct));
+  };
+
   return (
     <div className="w-[1184px] h-[600px] m-auto mt-10">
       <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
@@ -25,18 +31,21 @@ function Conformation() {
             <h1 className="text-xl font-bold">Quality</h1>
             <h1 className="text-xl font-bold">Total Price</h1>
           </div>
-          {cartItems.map((item) => (
+          {cartItems.map((item, id) => (
             <div
-              key={item.id}
+              key={id}
               className="flex items-center gap-6 border-b py-4  w-[800px]"
             >
               <img src={item.src} alt={item.name} className="w-24 h-24" />
-              <div className="flex gap-80">
+              <div className="flex gap-50 ">
                 <div>
                   <h2 className="text-xl font-semibold">{item.name}</h2>
                 </div>
                 <div>
                   <p className="text-gray-700">RM {item.price}</p>
+                </div>
+                <div onClick={() => deleteHandler(item)}>
+                  <span>X</span>
                 </div>
               </div>
             </div>
