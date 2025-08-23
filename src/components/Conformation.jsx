@@ -10,12 +10,28 @@ function Conformation() {
     setCartItems(savedCart);
   }, []);
 
-  const total = cartItems.reduce((acc, item) => acc + item.price, 0);
+ 
+  const total = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
+  
   const deleteHandler = (product) => {
-    const deleteProduct = cartItems.filter((i) => i.id !== product.id);
-    setCartItems(deleteProduct);
-    localStorage.setItem("cartItems", JSON.stringify(deleteProduct));
+    const updatedCart = cartItems.filter((i) => i.id !== product.id);
+    setCartItems(updatedCart);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+  };
+
+  
+  const handleQuantityChange = (product, value) => {
+    const newQty = Math.max(1, Number(value));
+    const updatedCart = cartItems.map((i) =>
+      i.id === product.id ? { ...i, quantity: newQty } : i
+    );
+
+    setCartItems(updatedCart);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
   };
 
   return (
@@ -26,39 +42,60 @@ function Conformation() {
         <p className="text-lg text-center">Your cart is empty 🛒</p>
       ) : (
         <div>
-          <div className="flex justify-start gap-50 border-b py-4 w-[800px]">
+          <div className="flex justify-between border-b py-4 w-[800px]">
             <h1 className="text-xl font-bold">Product</h1>
-            <h1 className="text-xl font-bold">Quality</h1>
+            <h1 className="text-xl font-bold">Quantity</h1>
             <h1 className="text-xl font-bold">Total Price</h1>
           </div>
-          {cartItems.map((item, id) => (
+
+          {cartItems.map((item) => (
             <div
-              key={id}
-              className="flex items-center gap-6 border-b py-4  w-[800px]"
+              key={item.id}
+              className="flex items-center justify-between border-b py-4 w-[800px]"
             >
-              <img src={item.src} alt={item.name} className="w-24 h-24" />
-              <div className="flex gap-50 ">
-                <div>
-                  <h2 className="text-xl font-semibold">{item.name}</h2>
-                </div>
-                <div>
-                  <p className="text-gray-700">RM {item.price}</p>
-                </div>
-                <div onClick={() => deleteHandler(item)}>
-                  <span>X</span>
-                </div>
+             
+              <div className="flex items-center gap-4">
+                <img src={item.src} alt={item.name} className="w-20 h-20" />
+                <h2 className="text-xl font-semibold">{item.name}</h2>
+              </div>
+
+             
+              <div>
+                <input
+                  type="number"
+                  min="1"
+                  value={item.quantity}
+                  onChange={(e) =>
+                    handleQuantityChange(item, e.target.value)
+                  }
+                  className="w-16 px-2 py-1 border rounded text-center"
+                />
+              </div>
+
+             
+              <div className="flex items-center gap-4">
+                <p className="text-gray-700">
+                  RM {(item.price * item.quantity).toFixed(2)}
+                </p>
+                <button
+                  onClick={() => deleteHandler(item)}
+                  className=" text-gray-800 font-bold cursor-pointer"
+                >
+                  X
+                </button>
               </div>
             </div>
           ))}
 
-          <div className="mt-6 text-right w-[700px] ">
-            <h2 className="text-2xl font-bold">Total: RM {total}</h2>
+          
+          <div className="mt-6 text-right w-[700px]">
+            <h2 className="text-2xl font-bold">Total: RM {total.toFixed()}</h2>
           </div>
         </div>
       )}
+
       <Link to="/product">
-        <button className="flex items-center gap-2 cursor-pointer w-[320px] h-[56px] rounded-4xl justify-center  border-2 border-[#351C0F] hover:bg-[#351C0F] hover:text-white text-xl transition-colors duration-300 ease-in-out">
-          {" "}
+        <button className="flex items-center gap-2 cursor-pointer w-[320px] h-[56px] rounded-4xl justify-center border-2 border-[#351C0F] hover:bg-[#351C0F] hover:text-white text-xl transition-colors duration-300 ease-in-out">
           <IoIosArrowBack />
           Back to Order
         </button>
